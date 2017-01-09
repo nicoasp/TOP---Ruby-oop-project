@@ -16,7 +16,7 @@ sleep 1
 active_player = player1
 
 # Gameplay
-until board.game_won?
+until board.game_over?
 	board.display_board
 	choice = active_player.make_play
 	unless choice = 
@@ -24,6 +24,9 @@ until board.game_won?
 	if board.game_won?
 		board.display_board
 		puts "#{active_player.name} has won! Congratulations!"
+	elsif board.game_tied?
+		board.display_board
+		puts "The game is a tie! So you are both half-losers!"
 	else
 		if active_player == player1
 			active_player = player2
