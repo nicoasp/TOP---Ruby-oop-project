@@ -19,7 +19,6 @@ active_player = player1
 until board.game_over?
 	board.display_board
 	choice = active_player.make_play
-	unless choice = 
 	board.update_board(choice, active_player.symbol)
 	if board.game_won?
 		board.display_board
@@ -35,5 +34,3 @@ until board.game_over?
 		end
 	end
 end
-
-

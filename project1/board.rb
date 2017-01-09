@@ -38,12 +38,12 @@ class Board < Hash
 
     def game_tied?
       @board.each do |key, value|
-        if value = "-"
+        if value == "-"
           return false
         end
-        return true unless game_won?
-        false
       end
+      return true unless game_won?
+      false
     end
 
     def game_over?
