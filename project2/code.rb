@@ -1,15 +1,9 @@
-class Code < Array
+class Code
+	attr_accessor :code
+	attr_reader :hint
 
-	def initialize(code = [" ", " ", " ", " "])
-		@code = code
-	end
-
-	def code
-		@code
-	end
-
-	def set_code(code)
-		@code = code
+	def initialize
+		@code = []
 	end
 
 	def random_code
