@@ -4,6 +4,7 @@ class Code
 
 	def initialize
 		@code = []
+		@hint = []
 	end
 
 	def random_code
@@ -12,39 +13,27 @@ class Code
 	end
 
 	def check_guess(solution_code)
-		@hint = []
-		helper_code = @code
-		@code.each_with_index do |guess_color, guess_index|
-			if solution_code[guess_index] == guess_color
+		helper_code = []
+		helper_solution = []
+		@code.each_with_index do |guess, index|
+			if solution_code.code[index] == guess
 				@hint.push("*")
-				helper_code.delete_at(guess_index)
+			else
+				helper_code.push(guess)
+				helper_solution.push(solution_code.code[index])
 			end
 		end
-		helper_code.each do |guess_color|
-			if solution_code.include?(guess_color)
+		helper_code.each do |color|
+			if helper_solution.include?(color)
 				@hint.push("o")
+				helper_solution.delete(color)
 			end
 		end
 		@hint
 	end
 
 	def give_hint
-		case @hint.length
-		when 0
-			puts "Uh, you didn't get a single color right! You suck!"
-		when 1
-			puts "Well, you COULD be worse... here's your hint:"
-			@hint.each {|x| print x + " "}
-		when 2
-			puts "Not bad! Here's your hint:"
-			@hint.each {|x| print x + " "}
-		when 3
-			puts "Getting close! Here's your hint:"
-			@hint.each {|x| print x + " "}
-		when 4
-			puts "Getting close! Here's your hint:"
-			@hint.each {|x| print x + " "}
-		end
+		@hint.each {|x| print x + " "}
 		puts
 	end
 

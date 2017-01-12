@@ -1,12 +1,13 @@
 require './code.rb'
 require './player.rb'
 
-class Game
+class GameComputer
 
 
 	def initialize
+		@player = Player.new
 		@solution_code = Code.new
-		@solution_code.random_code
+		@solution_code.code = @player.choose_secret_code
 		@guess1 = Code.new
 		@guess2 = Code.new
 		@guess3 = Code.new
@@ -19,32 +20,31 @@ class Game
 		@guess10 = Code.new
 		@guess11 = Code.new
 		@guess12 = Code.new
-		@player_guesses = [@guess1, @guess2, @guess3, @guess4, @guess5, @guess6, @guess7, @guess8, @guess9, @guess10, @guess11, @guess12]
-		@player = Player.new
+		@computer_guesses = [@guess1, @guess2, @guess3, @guess4, @guess5, @guess6, @guess7, @guess8, @guess9, @guess10, @guess11, @guess12]
 	end
 
 
 	def gameplay
 		won = false
-		@player_guesses.each do |guess_n|
+		@computer_guesses.each do |guess_n|
 
-			guess_n.code = @player.guess_code
+			guess_n.random_code
 			guess_n.check_guess(@solution_code)
 			# for testing
-			puts guess_n.code.inspect
-			puts @solution_code.code.inspect
+			puts "The computer guessed: #{guess_n.code.inspect}"
+			puts "Your code is: #{@solution_code.code.inspect}"
 			if guess_n.code_broken?
-				puts "Congratulations! You have broken the code!"
+				sleep 3
+				puts "The computer broke your code!"
 				won = true
 				return true
 			else
-				guess_n.give_hint
 				sleep 3
+				#guess_n.give_hint
 			end
 		end
 		unless won
-			puts "Your guesses are over. You lose!"
-			puts "The secret code was #{@solution_code.code}"
+			puts "The computer ran out of guesses. You win!"
 		end
 	end
 
