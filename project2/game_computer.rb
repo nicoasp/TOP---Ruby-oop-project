@@ -1,6 +1,7 @@
 require './code.rb'
 require './player.rb'
 
+
 class GameComputer
 
 
@@ -25,6 +26,7 @@ class GameComputer
 
 
 	def gameplay
+	
 		won = false
 		@computer_guesses.each do |guess_n|
 

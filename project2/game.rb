@@ -30,9 +30,7 @@ class Game
 
 			guess_n.code = @player.guess_code
 			guess_n.check_guess(@solution_code)
-			# for testing
-			puts guess_n.code.inspect
-			puts @solution_code.code.inspect
+
 			if guess_n.code_broken?
 				puts "Congratulations! You have broken the code!"
 				won = true
